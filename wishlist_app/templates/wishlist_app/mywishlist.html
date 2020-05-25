@@ -1,0 +1,42 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+
+
+
+<h1>My Wishlists</h1>
+
+    <button class="createWishlist">Create Wishlist</button>
+    
+
+<form id="frmCreateWishlist">
+    {% csrf_token %}
+
+    <label>Privat</label>
+        <input type="radio" id="private_public" name="is_private" value="True">
+    <label>Public</label>
+        <input type="radio" id="private_public" name="is_private" value="False">
+    <label>Title</label>
+        <input name="title" type="text">
+    <button>Submit</button>
+</form>
+
+</br>
+</br>
+</br>
+</br>
+
+<div id="wishlistContainer">
+
+</div>
+
+
+
+{% endblock %}
+{% block script %}
+
+    {% load static %}
+    <script src="{% static 'js/mywishlist.js' %}"></script>
+
+{% endblock %}

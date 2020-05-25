@@ -1,0 +1,63 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+
+
+
+<h1>Profile</h1>
+
+<h3>My information</h3>
+
+<div id="accountContainer">
+<button class="updateBtn">Update Account Info</button>
+</div> 
+
+<button class="updatePasswordBtn">Change password</button>
+
+<form id="frmUpdatePassword">
+    {% csrf_token %}
+    <input name="new_password1" type="text" placeholder="Password">
+    <input name="new_password2" type="text" placeholder="Confirm password">
+    <button>Submit</button>
+    <ul class="error_message"></ul>
+</form>
+
+
+<div class="updateAccount">
+    <form id="frmUpdateAccount">
+        {% csrf_token %}
+
+    </form>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<h3>Wishlists i follow</h3>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<h3>Wishes i have reserved</h3>
+
+
+
+{% endblock %}
+
+
+{% block script %}
+
+{% load static %}
+    <script src="{% static 'js/profile.js' %}"></script>
+
+    {% comment %} http://127.0.0.1:8000/accounts/rest-auth/user/ {% endcomment %}
+    {% comment %} You can only change username, firstname, lastname {% endcomment %}
+    {% comment %} Password change is on a new field {% endcomment %}
+
+{% endblock %}

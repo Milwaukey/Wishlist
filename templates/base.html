@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'wishlist_app.css' %}" media="screen"/>
+
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+
+    <div class="menu_link">Menu</div>
+    <div class="menu_wrapper_mobile"></div>
+    <nav class="close" >
+        <div class="nav_wrapper">   
+            <a href="{% url 'wishlist_app:index' %}">Frontpage</a>
+            {% comment %} <a href="{% url 'wishlist_app:index' %}">About</a> {% endcomment %}
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'wishlist_app:search' %}">Search</a>
+            <a href="{% url 'wishlist_app:profile' %}">Profile</a>
+            <a href="{% url 'wishlist_app:mywishlist' %}">My Wishlists</a>
+
+            {% endif %}            
+        
+        <div class="login_logout">
+            {% if user.is_authenticated %}
+                <form onsubmit="logout(); return false">
+                    {% csrf_token %}
+                    <button class="logoutBtn">Logout</button>
+                </form>
+
+            {% else %} 
+
+                <a href="{% url 'wishlist_app:login'%}">Login</a>
+                <a href="{% url 'wishlist_app:signup'%}">Signup</a>
+
+            {% endif %}
+        </div>
+        </div>
+
+
+    </nav>
+
+
+
+
+
+    <section>
+    {% block content %}
+    {% endblock %}
+    </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    {% load static %}
+    <script src="{% static 'js/script.js' %}"></script>
+
+    {% block script %}
+
+    {% endblock %}
+
+
+</body>
+</html>

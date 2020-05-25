@@ -1,0 +1,54 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+
+
+
+<h1>WISHLIST DETAIL</h1>
+
+<form id="frmDeleteWishlist">
+    {% csrf_token %}
+    <button class="deleteWishlist">Delete Wishlist</button>
+</form>
+
+<button class="updateWishlist">Update Wishlist Info</button>
+
+<form id="frmUpdateWishlistInfo">
+    {% csrf_token %}
+    <button>Save</button>
+</form>
+
+<button class="addNewWish">Add wish</button>
+
+<form id="frmAddNewWish">
+    {% csrf_token %}
+    <label>Title</label>
+    <input name="title" type="text">
+    <label>Description</label>
+    <input name="description" type="text">
+    <button>Submit</button>
+</form>
+
+
+<div id="wishesContainer">
+
+</div>
+
+<form id="frmUpdateWish">
+{% csrf_token %}
+<div class="frmContentUpdateWish">
+
+</div>
+
+<button>submit</button>
+</form>
+
+
+{% endblock %}
+{% block script %}
+
+    {% load static %}
+    <script src="{% static 'js/mywishlistdetail.js' %}"></script>
+
+{% endblock %}

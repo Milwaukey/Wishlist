@@ -1,0 +1,41 @@
+{% extends  'base.html' %}
+{% block content %}
+
+
+
+
+<h1>Signup</h1>
+
+
+<form onsubmit="signup(); return false">
+    {% csrf_token %}
+    <label>Username</label>
+    <input name="username" type="text">
+
+    <label>Email</label>
+    <input name="email" type="email">
+
+    <label>Password</label>
+    <input name="password1" type="password">
+
+    <label>Confirm Password</label>
+    <input name="password2" type="password">
+
+    <button>Submit</button>
+
+    <ul class="error_message"></ul>
+</form>
+
+
+
+
+
+
+
+{% endblock %}
+{% block script %}
+
+    {% load static %}
+    <script src="{% static 'js/signup.js' %}"></script>
+
+{% endblock %}
