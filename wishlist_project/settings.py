@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 SITE_ID = 1
 
 # Application definition
@@ -51,6 +50,8 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'allauth.socialaccount',
 
+    'django_rq',
+
     #MY APPS
     'api_account',
     'api_wishlist',
@@ -59,10 +60,42 @@ INSTALLED_APPS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+RQ_QUEUES = {
+   'default': {
+      'HOST': 'localhost',
+      'PORT': '6379',
+      'DB': 0,
+      'DEFAULT_TIMEOUT': 360,
+   }
+}
+
+# EMAIL SITTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+#EMAIL_USE_SSL = True ### <--- DON'T USE THIS - USE EMAIL_USE_TLS
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'louise.h.jessen@gmail.com'
+EMAIL_HOST_PASSWORD = 'mFEVTbrt7gaR1kDZ'
+
+
+LOGIN_NOT_REQUIRED = (
+    '',
+    'login/',
+    'signup/',
+    'password-reset/',
+    'confirm-password-reset/',
+    'accounts/rest-auth/login/',
+    'accounts/rest-auth/logout/',
+    'accounts/rest-auth/registration/'
+)
+
+
+
 REST_FRAMEWORK = {
    'DEFAULT_PERMISSION_CLASSES': [
-    #   'rest_framework.permissions.IsAuthenticated',
-      'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+      'rest_framework.permissions.IsAuthenticated',
+    #   'rest_framework.permissions.IsAuthenticatedOrReadOnly',
    ],
    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
@@ -79,6 +112,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'login_required_middleware.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'wishlist_project.urls'

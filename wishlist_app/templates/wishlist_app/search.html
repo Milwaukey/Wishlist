@@ -1,27 +1,27 @@
 {% extends  'base.html' %}
 {% block content %}
 
-<h1>SEARCH</h1>
+<h1>Search for users</h1>
 
 <form id="frmSearch">
-
+    <input name="searchText" class="searchText" type="text" placeholder="Search for user...">
+    <button>Search</button>
 </form>
 
 
-- Search though users (API THAT GETS USER.pk AND USERNAME)<br> 
-- A link to open a specifcs users profile, to see their public wishlists<br>
-- Open a specific wishlist, and see all wishes <br>
-- Follow/unfollow button <br>
-- Reserve a wish / unreserve a wish button<br>
+<div id="searchResults">
+
+
+</div>
+
 
 {% endblock %}
 
 
 
+{% block script %} 
 
-{% comment %} {% block script %} {% endcomment %}
+ {% load static %}
+    <script src="{% static 'js/search.js' %}"></script>
 
-{% comment %} {% load static %}
-    <script src="{% static 'js/login.js' %}"></script>
-
-{% endblock %} {% endcomment %}
+{% endblock %}

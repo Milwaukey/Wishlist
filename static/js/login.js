@@ -29,6 +29,8 @@ function login(){
     })
     .fail(function(data){
 
+        console.log(data)
+
             let response = JSON.parse(data.responseText);
 
             if( response.username ){
@@ -41,7 +43,7 @@ function login(){
             if( response.password ){
                 for(let i = 0; i < response.password.length; i++){
                     console.log(response.password[i])
-                    $('.error_message').append('<li>' + response.password[i] + '</li>')
+                    $('.error_message').append('<li>Password: ' + response.password[i] + '</li>')
                 }
             }
 

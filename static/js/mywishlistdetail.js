@@ -5,6 +5,8 @@ const wishlistID = parts[4];
 
 let userID; 
 
+let wishlistName;
+
 // ########################################################################
 
 $(document).ready(function() {
@@ -32,14 +34,35 @@ $(document).ready(function() {
 
         for(let i = 0; i < response.length; i++ ){
 
-            let wish = `<div class="wishWrapper">
+            // let wish = `<div class="wishWrapper wishID_${response[i].id}">
             
-            <div class="wishID">${response[i].id}</div> <div class="wishTitle">${response[i].title}</div> <div class="wishDescription">${response[i].description}</div>
+            // <div class="wishID">${response[i].id}</div> <div class="wishTitle">${response[i].title}</div> <div class="wishDescription">${response[i].description}</div>
             
-            <button class="updateWish">UPDATE</button>
-            <button class="deleteWish">DELETE</button>
+            // <button class="updateWish">UPDATE</button>
+            // <button class="deleteWish">DELETE</button>
 
-            </div>`;
+            // </div>`;
+
+            let wish = `
+            
+            <div class="wishWrap wishID_${response[i].id}">
+
+                <div class="wishContentWrapper">
+                    <div class="imageHere"></div>
+
+
+                <div>
+                    <h3 class="wishTitle">${response[i].title}</h3>
+                    <div class="wishDescription">${response[i].description}</div>
+                </div>
+
+                </div>
+                    <div class="deleteWish" onclick="deleteWish(${response[i].id})"><i class="fas fa-trash"></i></div>
+
+                    </div>
+                    `;
+
+            
 
             $('#wishesContainer').prepend(wish)
 
@@ -62,16 +85,30 @@ $(document).ready(function() {
     .done(function(reponse){
         console.log(reponse)
 
+        $('#wishlistName').html(`${reponse.title}`);
+
         $('#frmUpdateWishlistInfo').prepend(`
+
+        <div class="createWishlistInnerFrm">
+        <h1>Update your new wishlist!</h1>
         
             <input type="hidden" name="id" value="${reponse.id}">
             <input type="hidden" name="user" value="${reponse.user}">
-            <label>Title</label>
-                <input name="title" type="text" value="${reponse.title}">
+
+            <div class="radioBox">
             <label>Privat</label>
                 <input type="radio" id="private_public" name="is_private" value="True">
             <label>Public</label>
                 <input type="radio" id="private_public" name="is_private" value="False" checked>
+            </div>
+
+            <div class="inputArea">
+                <input name="title" type="text" value="${reponse.title}">
+            </div>
+
+            <button>Save</button>
+
+        </div>
 
         `);
 
@@ -126,43 +163,46 @@ $(document).ready(function() {
     })
 
 
+
+
+
 });
 
 
 // ########################################################################
 
 
-$('#frmDeleteWishlist').submit(function(){
+// $('#frmDeleteWishlist').submit(function(){
 
-    $.ajax({
+//     $.ajax({
 
-        url : 'http://127.0.0.1:8000/api/wishlists/'+ wishlistID+'/',
-        dataType : 'JSON',
-        // data : formData,
-        type : 'DELETE',
-        beforeSend: function(xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
-        },
-        processData: false,
-        contentType: false
+//         url : 'http://127.0.0.1:8000/api/wishlists/'+ wishlistID+'/',
+//         dataType : 'JSON',
+//         // data : formData,
+//         type : 'DELETE',
+//         beforeSend: function(xhr, settings) {
+//             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+//                 xhr.setRequestHeader("X-CSRFToken", csrftoken);
+//             }
+//         },
+//         processData: false,
+//         contentType: false
 
-    }).done(function(response){
+//     }).done(function(response){
 
-        location.href = '../'
+//         location.href = '../'
         
         
-    }).fail(function(response){
+//     }).fail(function(response){
         
-        console.log(response)
+//         console.log(response)
 
-    })
+//     })
 
-    return false;
+//     return false;
 
 
-})
+// })
 
 // ########################################################################
 
@@ -171,40 +211,39 @@ $('.addNewWish').click(function(){
     // Toggle
     $('#frmAddNewWish').toggle();
 
-    // ajax on submit
-    $('#frmAddNewWish').submit(function(){
+})
 
-        var formData = new FormData( document.querySelector('#frmAddNewWish') )
+// ajax on submit
+$('#frmAddNewWish').submit(function(){
 
-        $.ajax({
-            url : 'http://127.0.0.1:8000/api/wishlists/'+ wishlistID +'/wishes/',
-            method : 'POST',
-            dataType : 'JSON',
-            data : formData,
-            beforeSend: function(xhr, settings) {
-                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                }
-            },
-            processData: false,
-            contentType: false
+    var formData = new FormData( document.querySelector('#frmAddNewWish') )
 
-
-        }).done(function(response){
-
-            location.href = '../'+wishlistID
-            
-        }).fail(function(response){
-            
-            console.log(response)
-            
-        })
+    $.ajax({
+        url : 'http://127.0.0.1:8000/api/wishlists/'+ wishlistID +'/wishes/',
+        method : 'POST',
+        dataType : 'JSON',
+        data : formData,
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        },
+        processData: false,
+        contentType: false
 
 
-        return false;
+    }).done(function(response){
 
+        location.href = '../'+wishlistID
+        
+    }).fail(function(response){
+        
+        console.log(response)
+        
     })
 
+
+    return false;
 
 })
 
@@ -220,7 +259,7 @@ $("body").delegate(".updateWish", "click", function(){
     $('.frmContentUpdateWish').empty()
 
     let wishUpdate = `
-    
+
     <label>Title</label>
     <input name="title" type="text" value="${wishTitle}">
     
@@ -237,6 +276,12 @@ $("body").delegate(".updateWish", "click", function(){
 
 
     $('#frmUpdateWish').submit(function(){
+
+        let wishID = $('#frmUpdateWish input[name="id"]').val()
+        let wishTitle = $('#frmUpdateWish input[name="title"]').val()
+        let wishDescription = $('#frmUpdateWish input[name="description"]').val()
+
+        console.log(wishID)
 
         var formData = new FormData( document.querySelector('#frmUpdateWish') )
 
@@ -255,8 +300,14 @@ $("body").delegate(".updateWish", "click", function(){
             contentType: false
     
         }).done(function(response){ 
+
+            $('#frmUpdateWish').hide()
+            $('.frmContentUpdateWish').empty()
+
+            $(`.wishID_${wishID} .wishTitle`).empty().text(wishTitle)
+            $(`.wishID_${wishID} .wishDescription`).empty().text(wishDescription)
             
-            location.href = '../'+wishlistID
+            // location.href = '../'+wishlistID
         
         }).fail(function(response){
             console.log(response)
@@ -280,13 +331,7 @@ $('button.updateWish').click(function(){})
 
 
 
-
-$("body").delegate(".deleteWish", "click", function(){
-    let wishID = $(this).parent().find('.wishID').text()
-    let wishTitle = $(this).parent().find('.wishTitle').text()
-    let wishDescription = $(this).parent().find('.wishDescription').text()
-
-    console.log(wishID, wishTitle, wishDescription)
+function deleteWish(wishID){
 
     $.ajax({
 
@@ -303,12 +348,14 @@ $("body").delegate(".deleteWish", "click", function(){
 
     }).done(function(response){
 
-        location.href = '../'+wishlistID
+        $(`.wishID_${wishID}`).remove()
+        // location.href = '../'+wishlistID
         
         
     }).fail(function(response){
         
         console.log(response)
+
 
     })
 
@@ -316,7 +363,4 @@ $("body").delegate(".deleteWish", "click", function(){
 
 
 
-});
-
-// DELETE WISH
-$('button.deleteWish').click(function(){})
+};

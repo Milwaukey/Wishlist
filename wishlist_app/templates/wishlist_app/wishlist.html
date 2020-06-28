@@ -1,0 +1,33 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+<h1> 
+
+{% if request.GET.wname %}
+{{request.GET.wname}}</h1>
+
+{% else %}
+Wishlist
+{% endif %}
+
+
+<div id="wishContainer">
+
+
+
+</div>
+
+
+{% endblock %}
+
+
+ {% block script %}
+
+        <script> var userID = '{{ userID }}'; </script>
+
+    {% load static %}
+        <script src="{% static 'js/wishlist.js' %}"></script>
+
+{% endblock %}
+

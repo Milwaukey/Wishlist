@@ -11,15 +11,25 @@
     
 
 <form id="frmCreateWishlist">
+  <div class="createWishlistInnerFrm">
     {% csrf_token %}
 
+    <h1>Create your new wishlist!</h1>
+
+<div class="radioBox">
     <label>Privat</label>
         <input type="radio" id="private_public" name="is_private" value="True">
     <label>Public</label>
         <input type="radio" id="private_public" name="is_private" value="False">
-    <label>Title</label>
-        <input name="title" type="text">
+</div>
+
+<div class="inputArea">
+    {% comment %} <label>Title</label> {% endcomment %}
+        <input placeholder="What will you call your wishlist?" name="title" type="text">
+</div>
     <button>Submit</button>
+
+    </div>
 </form>
 
 </br>

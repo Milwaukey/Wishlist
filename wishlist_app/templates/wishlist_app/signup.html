@@ -7,7 +7,7 @@
 <h1>Signup</h1>
 
 
-<form onsubmit="signup(); return false">
+<form id="frmSignup" onsubmit="signup(); return false">
     {% csrf_token %}
     <label>Username</label>
     <input name="username" type="text">

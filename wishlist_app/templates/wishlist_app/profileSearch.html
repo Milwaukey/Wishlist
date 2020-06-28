@@ -1,0 +1,25 @@
+{% extends  'base.html' %}
+
+{% block content %}
+
+
+
+{% for me in user %}
+    {% comment %} <div>{{me.username}}</div> {% endcomment %}
+    <h1>{{me.username}}'s Wishlists</h1>
+{% endfor %}
+
+
+<div id="usersWishlist">
+
+</div>
+
+{% endblock %}
+
+
+{% block script %}
+
+    {% load static %}
+        <script src="{% static 'js/profileSearch.js' %}"></script>
+
+{% endblock %}

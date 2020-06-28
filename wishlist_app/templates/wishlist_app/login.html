@@ -5,8 +5,10 @@
 
 
 
-<form onsubmit="login(); return false">
+<form id="frmLogin" onsubmit="login(); return false">
     {% csrf_token %}
+
+    
     <label>Username</label>
     <input type="text" name="username">
 
@@ -16,10 +18,12 @@
     <button>Submit</button>
 
     <ul class="error_message"></ul>
-</form>
 
 
 <a href="{% url 'wishlist_app:password-reset' %}">Password Reset</a>
+</form>
+
+
 
 
 

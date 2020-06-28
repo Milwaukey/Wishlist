@@ -5,29 +5,35 @@
 
 
 
-<h1>WISHLIST DETAIL</h1>
+<h1 id="wishlistName">Wishlist Detail</h1>
 
-<form id="frmDeleteWishlist">
+{% comment %} <form id="frmDeleteWishlist">
     {% csrf_token %}
     <button class="deleteWishlist">Delete Wishlist</button>
-</form>
+</form> {% endcomment %}
 
 <button class="updateWishlist">Update Wishlist Info</button>
 
 <form id="frmUpdateWishlistInfo">
     {% csrf_token %}
-    <button>Save</button>
+    
 </form>
 
-<button class="addNewWish">Add wish</button>
+
+
+<div class="addNewWish"><i class="fas fa-plus"></i></div>
 
 <form id="frmAddNewWish">
     {% csrf_token %}
-    <label>Title</label>
-    <input name="title" type="text">
-    <label>Description</label>
-    <input name="description" type="text">
-    <button>Submit</button>
+
+    <div class="frmAddNewWishInner">
+    <h2>Add a new wish!</h2>
+        {% comment %} <label>Title</label> {% endcomment %}
+        <input placeholder="What is the title" name="title" type="text">
+        {% comment %} <label>Description</label> {% endcomment %}
+        <input placeholder="Come with a description for your wish ..." name="description" type="text">
+        <button>Submit</button>
+    </div>
 </form>
 
 

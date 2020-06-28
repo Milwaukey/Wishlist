@@ -7,22 +7,26 @@
 
 <h1>Profile</h1>
 
-<h3>My information</h3>
-
-<div id="accountContainer">
-<button class="updateBtn">Update Account Info</button>
-</div> 
+<div class="updateBtnsWrapper">
+<button class="updateBtn" style="display: block;">Update Account</button>
 
 <button class="updatePasswordBtn">Change password</button>
+</div>
 
 <form id="frmUpdatePassword">
-    {% csrf_token %}
-    <input name="new_password1" type="text" placeholder="Password">
-    <input name="new_password2" type="text" placeholder="Confirm password">
-    <button>Submit</button>
-    <ul class="error_message"></ul>
-</form>
+    <div class="createWishlistInnerFrm">
 
+    <h1>What should your new password be?</h1>
+            {% csrf_token %}
+
+            <div class="inputArea">
+                <input name="new_password1" type="text" placeholder="Password">
+                <input name="new_password2" type="text" placeholder="Confirm password">
+            </div>
+            <button>Submit</button>
+            <ul class="error_message"></ul>
+    </div>
+</form>
 
 <div class="updateAccount">
     <form id="frmUpdateAccount">
@@ -31,21 +35,51 @@
     </form>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-
-<h3>Wishlists i follow</h3>
 
 
-<br>
-<br>
-<br>
-<br>
+<div id="dashboard">
 
-<h3>Wishes i have reserved</h3>
+    <div id="accountContainer">
+    </div> 
 
+    <div id="wishesIHaveReservedContainer">
+        <h3>Wishes i have reserved</h3>
+
+
+        <div class="wishReservedWrap">
+        {% for rWish in myReservedWishes %}
+
+        <div>
+        <h4>{{rWish.title}}</h3>
+        {{rWish.description}}
+        <a href="{{rWish.userID}}/wishlist/{{rWish.wishlistID}}"><i class="fas fa-eye"></i><a>
+        </div>
+
+        {% endfor %}
+
+        {% if error %}
+            <p>{{error}}</p>
+        {% endif %}
+
+        </div>
+    </div>
+
+<div id="savedWishlists">
+<h3>Wishlists i have favorited</h3>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<a href="{% url 'wishlist_app:delete-account' %}" id="deleteAccount">DELETE ACCOUNT</a>
 
 
 {% endblock %}

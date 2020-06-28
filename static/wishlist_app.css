@@ -12,22 +12,34 @@ a {
 
 
 section{
+    position: relative;
     width: 100vw;
-    /* height: calc(100vh - 75px);
-    margin-top: 75px; */
-    height: 100vh;
+    height: calc(100vh - 80px);
+    margin-top: 80px;
+    /* height: 100vh; */
     overflow: hidden;
     overflow-y: scroll;
 }
 
 
-h1 {
-    margin-top: 75px;
+#deleteAccount {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 3px;
+    font-weight: 800;
+    font-size: 12px;
 }
 
 
-
-
+h1 {
+    font-family: 'Indie Flower', cursive;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
 
 
 /************* MENU **********/
@@ -275,6 +287,147 @@ nav.open {
 
 
 
+#frmLogin, #passwordReset, #frmConfirmPassword, #frmSignup {
+    max-width: 500px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-gap: 15px;
+    margin-top: 100px;
+}
+
+#frmLogin label, #frmConfirmPassword label, #frmSignup label {
+    margin-bottom: -5px;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+#frmLogin input, #passwordReset input, #frmConfirmPassword input, #frmSignup input {
+
+    border: none;
+    padding: 10px;
+    background: #efefef;
+    outline: none;
+}
+
+
+#frmLogin button, #passwordReset button, #frmConfirmPassword button, #frmSignup button {
+    border: none;
+    padding: 10px;
+    background: #6200EE;
+    color: white;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#frmLogin a {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-top: -15px;
+}
+
+#passwordReset div {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.updatePasswordBtn, .updateBtn {
+    z-index: 3;
+}
+
+
+
+.updateBtnsWrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    display: grid;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-gap: 15px;
+
+    position: absolute;
+    top: 15px;
+    right: 35px;
+}
+
+.updateBtnsWrapper button {
+    border: none;
+    padding: 10px;
+    background: #6200EE;
+    color: white;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+#accountContainer {
+    /* max-width: 400px;
+    margin: 0 auto; */
+    /* margin-top: 30px; */
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+    background: #efefef;
+    grid-row: 1/3;
+    /* max-height: 130px; */
+}
+
+
+#accountContainer span {
+    font-weight: 600;
+}
+
+
+
+#dashboard {
+    font-family: 'Open Sans', sans-serif;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 15px;
+
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#dashboard h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#wishesIHaveReservedContainer .wishReservedWrap {
+    max-height: 500px;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: grid;
+    grid-gap: 15px;
+}
+
+
+#wishesIHaveReservedContainer .wishReservedWrap div {
+    font-family: 'Open Sans', sans-serif;
+    background: #efefef;
+    padding: 18px;
+    position: relative;
+    cursor: pointer;
+}
+
+#wishesIHaveReservedContainer div i {
+    position: absolute;
+    right: 30px;
+    top: 40%;
+    color: #6200EE
+}
+
 
 
 
@@ -285,3 +438,330 @@ nav.open {
 .wishWrapper {
     margin: 15px;
 }
+
+
+
+
+.createWishlist, .updateWishlist {
+    position: absolute;
+    top: 25px;
+    right: 45px;
+    border: none;
+    padding: 10px;
+    background: #6200EE;
+    color: white;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#frmCreateWishlist, #frmUpdateWishlistInfo, #frmUpdatePassword, #frmUpdateAccount {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: white;
+    /* display: flex; */
+    justify-content: center;
+    flex-direction: column;
+}
+
+.createWishlistInnerFrm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+
+.createWishlistInnerFrm button, #frmUpdateWishlistInfo button, #frmUpdateAccount button {
+    border: none;
+    padding: 10px;
+    width: 270px;
+    background: #6200EE;
+    color: white;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.radioBox{
+    margin-bottom: 10px;
+}
+
+.createWishlistInnerFrm .inputArea {
+    /* display: flex;
+    flex-direction: column;
+    width: 270px; */
+
+    display: grid;
+    width: 270px;
+    grid-gap: 15px;
+}
+
+.createWishlistInnerFrm .inputArea input, #frmUpdateAccount input {
+    border: none;
+    padding: 10px;
+    background: #efefef;
+}
+
+
+.createWishlistInnerFrm h1 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 35px;
+}
+ 
+
+
+#wishlistContainer, #wishesContainer, #usersWishlist, #wishContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 15px;
+}
+
+.wishWrap, .wish {
+    padding: 20px 20px;
+    background: rgb(238, 238, 238);
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    position: relative;
+
+    text-align: left;
+    font-weight: 100;
+}
+
+#wishlistContainer .individualWishlist {
+    max-width: 700px;
+}
+
+#wishlistContainer .fa-thumbtack {
+    color: #6200EE;
+    margin-right: 10px;
+}
+#wishlistContainer .deleteWishlist {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.deleteWish {
+    position: absolute;
+    right: 20px;
+    top: 35%;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.wishContentWrapper {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageHere {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+}
+
+.addNewWish {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #6200EE;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+}
+
+#frmAddNewWish {
+    /* display: block; */
+    max-width: 800px;
+    margin: 0px auto 40px;
+    background: rgb(98, 0, 238);
+    /* height: 160px; */
+    padding: 30px;
+    color: white;
+}
+
+#frmAddNewWish .frmAddNewWishInner {
+    max-width: 500px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap:  15px;
+
+    margin-bottom: 15px;
+}
+
+
+#frmAddNewWish .frmAddNewWishInner h2 {
+    font-family: 'Indie Flower', cursive;
+    /* font-size: 50px; */
+    text-align: center;
+
+}
+
+#frmAddNewWish input {
+    border: none;
+    padding: 8px;
+    background: none;
+    color: white; 
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+#frmAddNewWish ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+
+  #frmAddNewWish button {
+    padding: 10px;
+    border: none;
+    background: white;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+
+
+  #frmSearch {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  #frmSearch input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 3px solid #6200EE;
+    outline: none;
+  }
+
+  #frmSearch button {
+      display: none;
+  }
+
+
+  #searchResults {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+
+  #frmReserveWish button, #frmRemoveResered button{
+      position: absolute;
+      background: #6200EE;
+      color: white;
+      width: 250px;
+      right: 20px;
+      top: 40%;
+      border: none;
+      padding: 5px;
+      letter-spacing: 3px;
+      cursor: pointer;
+
+      font-size: 10px;
+      font-weight: 600;
+      text-align: center;
+  }
+
+  .reservedBySomeone {
+    position: absolute;
+    /* background: #6200EE; */
+    /* color: white; */
+    width: 250px;
+    right: 20px;
+    top: 40%;
+    border: none;
+    padding: 5px;
+    letter-spacing: 3px;
+    /* cursor: pointer; */
+
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+
+
+  #frmDeleteAccount {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 70px;
+    display: grid;
+    grid-gap: 20px;
+  }
+
+  #frmDeleteAccount input {
+
+    border: none;
+    padding: 10px;
+    background: #efefef;
+    outline: none;
+  }
+
+  #frmDeleteAccount button {
+    border: none;
+    padding: 10px;
+    width: 270px;
+    background: #6200EE;
+    color: white;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-size: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  #searchResults {
+    display: grid;
+    grid-gap: 15px;
+  }
+
+  #searchResults div {
+    padding: 15px;
+    background: #efefef;
+    text-transform: uppercase;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 3px;
+    font-size: 13px;
+    position: relative;
+  }
+
+  #searchResults div .fa-arrow-right {
+      position: absolute;
+      right: 15px;
+      top: 38%;
+  }
+
+
+

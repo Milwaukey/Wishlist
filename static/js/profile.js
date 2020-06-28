@@ -11,24 +11,24 @@ $(document).ready(function() {
         // console.log(reponse)
 
             let account = `
-                <div class="username">Username: ${reponse.username}</div>
-                <div class="first_name>Firstname: ${reponse.first_name}</div>
-                <div class="last_name">Lastname: ${reponse.last_name}</div>
-                <div class="email">Email:${reponse.email} </div>
+                <div class="username"><span>Username:</span> ${reponse.username}</div>
+                <div class="first_name"><span>First name:</span> ${reponse.first_name}</div>
+                <div class="last_name"><span>Last name:</span> ${reponse.last_name}</div>
+                <div class="email"><span>Email:</span>${reponse.email} </div>
             `;
 
             let updateAccount = `
-                    <input name="pk" type="hidden" value="${reponse.pk}">
-                    <label for="username">Username</label>
-                        <input name="username" type="text" value="${reponse.username}">
-                    <label for="first_name" >Firstname</label>
-                        <input name="first_name" type="text" value="${reponse.first_name}">
-                    <label for="last_name">Lastname</label>
-                        <input name="last_name" type="text" value="${reponse.last_name}">
-                    <button>Save</button>
-            `
-
-
+            <div class="createWishlistInnerFrm">
+            <h1>What new information can you provide us with?</h1>
+                        <input name="pk" type="hidden" value="${reponse.pk}">
+                        <div class="inputArea">
+                            <input class="newUsername" name="username" type="text" value="${reponse.username}">
+                            <input class="newFirstname" name="first_name" type="text" value="${reponse.first_name}">
+                            <input class="newLastname" name="last_name" type="text" value="${reponse.last_name}">
+                        </div>
+                        <button>Save</button>
+            </div>
+            `;
 
 
             $('#accountContainer').prepend(account)
@@ -49,52 +49,70 @@ $(document).ready(function() {
 
 $('.updateBtn').click(function(){
     $('.updateAccount').toggle()
+    $('.updatePasswordBtn').toggle()
+})
 
-    $('#frmUpdateAccount').submit(function(){
+$('#frmUpdateAccount').submit(function(){
 
-        //  AJAX FOR UPDATE
-        var formData = new FormData( document.querySelector('#frmUpdateAccount') )
+    let username = $(".newUsername").val();
+    let firstName = $(".newFirstname").val();
+    let lastName = $(".newLastname").val();
 
-        $.ajax({
+    //  AJAX FOR UPDATE
+    var formData = new FormData( document.querySelector('#frmUpdateAccount') )
 
-            url : 'http://127.0.0.1:8000/accounts/rest-auth/user/',
-            method : 'put',
-            data : formData,
-            dataType: 'JSON',
-            beforeSend: function(xhr, settings) {
-                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                }
-            },
-            processData: false,
-            contentType: false
+    $.ajax({
 
-
-        }).done(function(response){
-
-            if(response.username){
-                location.href = '../profile'
+        url : 'http://127.0.0.1:8000/accounts/rest-auth/user/',
+        method : 'put',
+        data : formData,
+        dataType: 'JSON',
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
             }
+        },
+        processData: false,
+        contentType: false
 
-        }).fail(function(response){
 
-            console.log(response)
+    }).done(function(response){
 
-        })
+        $('.username').text('Username: '+username)
+        $('.first_name').text('Firstname: '+firstName)
+        $('.last_name').text('Lastname: '+lastName)
 
-        return false;
+        $('.updateAccount').hide()
+
+
+    }).fail(function(response){
+
+        console.log(response)
 
     })
 
-
+    return false;
 
 })
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 $('.updatePasswordBtn').click(function(){
     $('#frmUpdatePassword').toggle()
+    $('.updateBtn').toggle();
 })
+
 
 $('#frmUpdatePassword').submit(function(){
 
@@ -123,10 +141,13 @@ $('#frmUpdatePassword').submit(function(){
 
         $('#frmUpdatePassword')[0].reset()
         $('.error_message').append('<li>' + data.detail + '</li>')
+        $('#frmUpdatePassword').hide()
 
-        // if(data.detail){
-        //     location.href = '../profile'
-        // }
+        setTimeout(function(){
+            $('.error_message').hide()
+            $('.error_message').val('')
+        }, 1000)
+
     })
     .fail(function(data){
 

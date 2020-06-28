@@ -1,12 +1,13 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-# Create your models here.
+
 class Wishlist(models.Model):
-    user        = models.ForeignKey(User, on_delete=models.CASCADE)
-    title       = models.CharField(max_length=50)
-    is_private  = models.BooleanField(default=False)
-    followed_by   = models.ManyToManyField(User, related_name='follwed_by', blank=True)
+    user            = models.ForeignKey(User, on_delete=models.CASCADE)
+    title           = models.CharField(max_length=50)
+    is_private      = models.BooleanField(default=False)
+    followed_by     = models.ManyToManyField(User, related_name='follwed_by', blank=True)
+    
     def __str__(self):
         return f"{self.user.id} - {self.title}"
 
@@ -23,6 +24,15 @@ class Wish(models.Model):
 
 
 
+
+
+class ReservedWish(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    wish = models.ForeignKey(Wish, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return f"Reserved by user: {self.user.pk} - Wish ID: {self.wish.pk}"
 
 
 ### FOLLOWERS
