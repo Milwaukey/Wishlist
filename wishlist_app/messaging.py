@@ -13,4 +13,4 @@ def email_message(message_dict):
       'louise.h.jessen@gmail.com',
       [message_dict['email']],
       fail_silently=False
-   )
+   ) 

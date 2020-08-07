@@ -45,6 +45,3 @@ class ReservedWishSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
-
-## FOLLOW --> FOLLOW 

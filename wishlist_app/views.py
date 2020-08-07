@@ -28,7 +28,7 @@ def login(request):
         return HttpResponseRedirect(reverse('wishlist_app:profile'))
 
     return render(request, 'wishlist_app/login.html')
-
+ 
 def passwordReset(request):
     if request.method == 'POST':
         print('PASSWORD RESET')
@@ -194,27 +194,3 @@ def deleteAccount(request):
     return render(request, 'wishlist_app/delete-account.html', context)
 
 
-
-#DASHBOARD - 1. OVERVIEW OF WISHLISTS I FOLLOW, 2. SEARCH FOR USERS, 3. RETURN SEARCHED USERS WISHLISTS (WHO HAS PUBLIC WISHLISTS)
-
-#PROFILE PAGE - 1. OVERVIEW OF YOUR OWN WISHLISTS, 2. PROFILE INFORMATION (POSSIBLITY TO UPDATE YOUR PROFILE INFORMATION)
-
-#WISHLIST SINGLE PAGE - 1. SHOW ALL WISHES BELONGING TO SPECIFIC WISHLIST, 2. UPDATE WISHLIST INFO, 3. UPDATE EACH WISH INFO
-
-
-
-
-##### -------------------- EXTRA ---------------------------
-
-# FOLLOW A PUBLIC WISHLIST 
-# RESERVE WISH ON FOLLOWED WISHLIST (ONLY POSSIBLITY TO FOR ONE USER TO RESERVE A WISH )
-# LET THE USER SEND OUT A EMAIL TO WISHLIST FOLLOWERS WITH "I HAVE UPDATED MY WISHLIST GO CHECK IT OUT!"
-
-
-
-
-
-
-
-
-# @login_required(login_url='/signup/', redirect_field_name=None)

@@ -87,7 +87,7 @@ LOGIN_NOT_REQUIRED = (
     'confirm-password-reset/',
     'accounts/rest-auth/login/',
     'accounts/rest-auth/logout/',
-    'accounts/rest-auth/registration/'
+    'accounts/rest-auth/registration/',
 )
 
 

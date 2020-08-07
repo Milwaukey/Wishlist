@@ -24,8 +24,6 @@ class Wish(models.Model):
 
 
 
-
-
 class ReservedWish(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     wish = models.ForeignKey(Wish, on_delete=models.CASCADE)

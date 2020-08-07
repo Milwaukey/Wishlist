@@ -11,7 +11,7 @@ class AllUsers(generics.ListCreateAPIView):
     queryset = User.objects.all() 
     serializer_class = serializers.UsersSerializer
 
-    def get_queryset(self, *args, **kwargs):
+    def get_queryset(self):
         queryset = User.objects.exclude(id=self.request.user.pk)
         searchFor =  self.request.GET.get('searchfor', None)
 
@@ -27,7 +27,7 @@ class FindUsersSearchWishlists(generics.ListCreateAPIView):
     queryset = models.Wishlist.objects.all() 
     serializer_class = serializers.AllWishlistSerializer
 
-    def get_queryset(self, *args, **kwargs):
+    def get_queryset(self):
         queryset = models.Wishlist.objects.filter(user=self.request.GET.get('id')).exclude(is_private=True)
 
         return queryset

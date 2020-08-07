@@ -17,11 +17,9 @@ class LoginRequiredMiddleware:
 
       if not request.user.is_authenticated:
          if not path in settings.LOGIN_NOT_REQUIRED:
-            print('not allowed')
             return redirect('wishlist_app:login')
 
-
-
+            
       response = self.get_response(request)
 
       # Code to be executed for each request/response after - the view is called:
@@ -29,11 +27,4 @@ class LoginRequiredMiddleware:
       return response
 
 
-
-
-
-
-
-
-
-
+ 
